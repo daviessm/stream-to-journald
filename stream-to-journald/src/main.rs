@@ -12,7 +12,10 @@ fn main() {
     loop {
         let mut input = String::new();
         match stdin().read_line(&mut input) {
-            Ok(_len) => {
+            Ok(len) => if len == 0 {
+                return;
+            } else {
+                input.pop();
                 let split = input.split(&separator);
                 let vec: Vec<&str> = split.collect();
                 journal::send(&vec);
